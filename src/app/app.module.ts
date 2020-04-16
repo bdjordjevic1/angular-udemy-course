@@ -10,6 +10,10 @@ import { RecipeListComponent } from './recipe/recipe-list/recipe-list.component'
 import { RecipeItemComponent } from './recipe/recipe-list/recipe-item/recipe-item.component';
 import { RecipeDetailComponent } from './recipe/recipe-list/recipe-detail/recipe-detail.component';
 import { RecipeComponent } from './recipe/recipe.component';
+import {BasicHighlightDirective} from './directives/basic-highlight/basic-highlight.directive';
+import { PimpedHighlightDirective } from './directives/pimped-highlight/pimped-highlight.directive';
+import {UnlessDirective} from './directives/unless-directive/UnlessDirective';
+import {DropdownDirective} from './directives/dropdown/dropdown.directive';
 
 @NgModule({
   declarations: [
@@ -20,7 +24,11 @@ import { RecipeComponent } from './recipe/recipe.component';
     RecipeListComponent,
     RecipeItemComponent,
     RecipeDetailComponent,
-    RecipeComponent
+    RecipeComponent,
+    BasicHighlightDirective,
+    PimpedHighlightDirective,
+    UnlessDirective,
+    DropdownDirective
   ],
   imports: [
     BrowserModule,
