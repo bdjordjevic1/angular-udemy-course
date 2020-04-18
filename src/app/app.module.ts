@@ -14,6 +14,9 @@ import {BasicHighlightDirective} from './directives/basic-highlight/basic-highli
 import { PimpedHighlightDirective } from './directives/pimped-highlight/pimped-highlight.directive';
 import {UnlessDirective} from './directives/unless-directive/UnlessDirective';
 import {DropdownDirective} from './directives/dropdown/dropdown.directive';
+import {AppRoutingModule} from './app-routing.module';
+import { RecipeStartComponent } from './recipe/recipe-start/recipe-start.component';
+import { RecipeEditComponent } from './recipe/recipe-edit/recipe-edit.component';
 
 @NgModule({
   declarations: [
@@ -28,11 +31,14 @@ import {DropdownDirective} from './directives/dropdown/dropdown.directive';
     BasicHighlightDirective,
     PimpedHighlightDirective,
     UnlessDirective,
-    DropdownDirective
+    DropdownDirective,
+    RecipeStartComponent,
+    RecipeEditComponent
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

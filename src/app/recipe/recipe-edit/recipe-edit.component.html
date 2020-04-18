@@ -1,0 +1,4 @@
+<p *ngIf="recipe; else newRecipe">Preparing to edit recipe <span style="color: green">{{recipe.name}}</span></p>
+<ng-template #newRecipe>
+  <p>Add new recipe</p>
+</ng-template>
