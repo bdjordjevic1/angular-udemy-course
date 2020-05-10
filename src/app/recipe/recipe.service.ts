@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Recipe} from '../recipe/recipe.model';
+import {Recipe} from './recipe.model';
 import {Ingredient} from '../shared/ingredient.model';
 import {Subject} from 'rxjs';
 
@@ -8,7 +8,7 @@ import {Subject} from 'rxjs';
 })
 export class RecipeService {
 
-  private recipes: Recipe[] = [
+  /*private recipes: Recipe[] = [
     new Recipe('1',
       'A test recipe',
       'Simply a test decription',
@@ -21,7 +21,8 @@ export class RecipeService {
       'https://www.bbcgoodfood.com/sites/default/files/'
       + 'recipe-collections/collection-image/2013/05/chorizo-mozarella-gnocchi-bake-cropped.jpg',
       [new Ingredient('Beans', 200), new Ingredient('Olives', 15)])
-  ];
+  ];*/
+  private recipes: Recipe[] = [];
   currentRecipes = new Subject<Recipe[]>();
 
   getRecipes() {
@@ -30,6 +31,11 @@ export class RecipeService {
 
   getRecipe(id: string) {
     return this.recipes.find(recipe => recipe.id === id);
+  }
+
+  setRecipes(recipes: Recipe[]) {
+    this.recipes = recipes;
+    this.currentRecipes.next(this.recipes.slice());
   }
 
   addRecipe(recipe: Recipe) {
@@ -42,10 +48,7 @@ export class RecipeService {
 
   updateRecipe(recipe: Recipe) {
     const index = this.recipes.findIndex(currentRecipe => currentRecipe.id === recipe.id);
-    console.log(index);
     this.recipes[index] = recipe;
-    console.log('updating recipe...');
-    console.log(this.recipes);
     this.currentRecipes.next(this.recipes.slice());
   }
 

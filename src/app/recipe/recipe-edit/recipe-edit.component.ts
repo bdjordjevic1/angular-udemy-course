@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Recipe} from '../recipe.model';
 import {ActivatedRoute, Params, Router} from '@angular/router';
-import {RecipeService} from '../../services/recipe.service';
+import {RecipeService} from '../recipe.service';
 import {FormArray, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Ingredient} from '../../shared/ingredient.model';
 import {fromArray} from 'rxjs/internal/observable/fromArray';
