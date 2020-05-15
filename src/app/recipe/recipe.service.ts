@@ -1,13 +1,12 @@
-import {Injectable} from '@angular/core';
-import {Recipe} from './recipe.model';
-import {Ingredient} from '../shared/ingredient.model';
-import {Subject} from 'rxjs';
+import { Injectable } from '@angular/core';
+import { Recipe } from './recipe.model';
+import { Ingredient } from '../shared/ingredient.model';
+import { Subject } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class RecipeService {
-
   /*private recipes: Recipe[] = [
     new Recipe('1',
       'A test recipe',
@@ -30,7 +29,7 @@ export class RecipeService {
   }
 
   getRecipe(id: string) {
-    return this.recipes.find(recipe => recipe.id === id);
+    return this.recipes.find((recipe) => recipe.id === id);
   }
 
   setRecipes(recipes: Recipe[]) {
@@ -47,13 +46,13 @@ export class RecipeService {
   }
 
   updateRecipe(recipe: Recipe) {
-    const index = this.recipes.findIndex(currentRecipe => currentRecipe.id === recipe.id);
+    const index = this.recipes.findIndex((currentRecipe) => currentRecipe.id === recipe.id);
     this.recipes[index] = recipe;
     this.currentRecipes.next(this.recipes.slice());
   }
 
   deleteRecipe(id: string) {
-    const index = this.recipes.findIndex(currentRecipe => currentRecipe.id === id);
+    const index = this.recipes.findIndex((currentRecipe) => currentRecipe.id === id);
     this.recipes.splice(index, 1);
     this.currentRecipes.next(this.recipes.slice());
   }

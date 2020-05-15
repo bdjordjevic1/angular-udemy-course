@@ -1,10 +1,10 @@
-import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {catchError, tap} from 'rxjs/operators';
-import {BehaviorSubject, Subject, throwError} from 'rxjs';
-import {User} from './user.model';
-import {Recipe} from '../recipe/recipe.model';
-import {Router} from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
+import { BehaviorSubject, throwError } from 'rxjs';
+import { catchError, tap } from 'rxjs/operators';
+import { environment } from '../../environments/environment';
+import { User } from './user.model';
 
 export interface AuthResponseData {
   kind: string;
@@ -16,24 +16,24 @@ export interface AuthResponseData {
   registered?: boolean;
 }
 
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class AuthService {
-
   user$ = new BehaviorSubject<User>(null);
   logoutTimer: any;
 
-  constructor(private http: HttpClient,
-              private router: Router) {
-  }
+  constructor(private http: HttpClient, private router: Router) {}
 
   signUp(email: string, password: string) {
-    return this.http.post<AuthResponseData>(
-      'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyAgqMJtQJHrfVZboQaWDkrqA_b7LwSMOYM',
-      {
-        email: email,
-        password: password,
-        returnSecureToken: true
-      }).pipe(catchError(this.handleError), tap(this.handleAuthentication.bind(this)));
+    return this.http
+      .post<AuthResponseData>(
+        `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${environment.firebaseAPIKey}`,
+        {
+          email: email,
+          password: password,
+          returnSecureToken: true,
+        }
+      )
+      .pipe(catchError(this.handleError), tap(this.handleAuthentication.bind(this)));
   }
 
   private handleAuthentication(responseData: AuthResponseData) {
@@ -60,21 +60,24 @@ export class AuthService {
   }
 
   signIn(email: string, password: string) {
-    return this.http.post<AuthResponseData>(
-      'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyAgqMJtQJHrfVZboQaWDkrqA_b7LwSMOYM',
-      {
-        email: email,
-        password: password,
-        returnSecureToken: true
-      }).pipe(catchError(this.handleError), tap(this.handleAuthentication.bind(this)));
+    return this.http
+      .post<AuthResponseData>(
+        `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${environment.firebaseAPIKey}`,
+        {
+          email: email,
+          password: password,
+          returnSecureToken: true,
+        }
+      )
+      .pipe(catchError(this.handleError), tap(this.handleAuthentication.bind(this)));
   }
 
   autoLogin() {
     const userData: {
-      email: string,
-      id: string,
-      _token: string,
-      _tokenExpirationDate: string
+      email: string;
+      id: string;
+      _token: string;
+      _tokenExpirationDate: string;
     } = JSON.parse(localStorage.getItem('userData'));
 
     if (!userData) {

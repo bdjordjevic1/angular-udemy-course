@@ -12,6 +12,14 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
+    const niz = ['1', '2', '3'];
+    niz.find(num => {
+      console.log(num);
+      if (num === '3') {
+        return true;
+      }
+      return false;
+    });
     this.authService.autoLogin();
   }
 }
